@@ -1,6 +1,45 @@
-<!doctype html>
-<title>Flaskr</title>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
-<div class=page>
-    <h1>Hello World!</h1>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Process Control Simulator</title>
+
+  <!-- For math -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/2.0.1/math.min.js"></script>
+  <script type="text/javascript"   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+  <h2>Control Simulator</h2>
+  <h3>Click the 'Send' button to update the transfer function and start the simulator</h3>
+  <form id="input-form">
+    <p>Enter coefficients separated by commas</p>
+    <span>Numerator: </span> <input type="text" id="num"> <br>
+    <span>Denominator: </span> <input type="text" id="denom"> 
+    <p><input type="button" id="update-tf" value="Send"></p>
+  </form>
+
+  <p> Transfer Funtion:
+    <span class="formula" id="tf-function">
+    </span>
+  </p>  
+  
+  <h3>Actions</h3>
+  <p>Increase or decrease your inputs here</p>
+  <button onclick="increaseAction()">Increase</button>
+  <button onclick="decreaseAction()">Decrease</button>
+
+  <div id="graph" style="width: 100%; height: 400px;">
+  
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+
+  <!-- For Plotting -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="https://code.highcharts.com/stock/highstock.js"></script>
+  <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+
+  
+  <script type="text/javascript" src="{{ url_for('static', filename = 'tf.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename = 'plotting.js') }}"></script>
+</body>
+</html>
