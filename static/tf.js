@@ -158,7 +158,7 @@ function clearChart(){
       chart.series[i].setData([]);
   }
   chart.redraw()
-  console.log('test');
+  console.log('Chart cleared');
 }
 
 $(function() {
