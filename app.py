@@ -1,3 +1,6 @@
+import matplotlib
+matplotlib.use('Agg')
+
 from flask import Flask, render_template
 from flask_socketio import SocketIO, join_room, emit
 from flask import copy_current_request_context
