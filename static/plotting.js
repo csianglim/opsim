@@ -1,4 +1,4 @@
-var socket = io.connect('http://' + document.domain + ':' + location.port);
+var socket = io.connect('//' + document.domain + ':' + location.port);
 // verify our websocket connection is established
 socket.on('connect', function() {
     console.log('Websocket connected!');
@@ -22,7 +22,7 @@ Highcharts.stockChart('graph', {
     chart: {
         events: {
             load: function () {
-                var socket = io.connect('http://' + document.domain + ':' + location.port);
+                var socket = io.connect('//' + document.domain + ':' + location.port);
                 var process_series = this.series[0];
                 var action_series = this.series[1];
                 socket.on('process', function (sample) {
