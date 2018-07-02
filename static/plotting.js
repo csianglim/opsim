@@ -1,8 +1,15 @@
 var socket = io.connect('//' + document.domain + ':' + location.port);
-// verify our websocket connection is established
+
+// Logging messages
 socket.on('connect', function() {
     console.log('Websocket connected!');
 });
+
+// Log rooms
+socket.on('room_response', function(data) {
+    console.log(data.message);
+});
+
 
 function increaseAction() {
   socket.emit('increase');
