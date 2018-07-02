@@ -40,32 +40,44 @@ Highcharts.stockChart('graph', {
             }
         }
     },
-
     rangeSelector: {
         selected: 5
     },    
-
     title: {
         text: 'Process data'
     },
-
     exporting: {
         enabled: false
     },
-
+    tooltip: {
+        valueDecimals: 2
+    },
     yAxis: [
-    {  // Primary yAxis - 0
+    {  // Primary yAxis - 1
         title: {
             text: 'Process Data'
         },
-        opposite: false
-    }, { // Secondary yAxis - 1
+        labels: {
+            align: 'right',
+            x: -3
+        },        
+        height: '65%',
+        lineWidth: 2,
+        resize: {
+            enabled: true
+        }
+    }, { // Secondary yAxis - 0
         title: {
             text: 'Actions',
+        },
+        labels: {
+            align: 'right',
+            x: -3
         },        
-        opposite: true,
-        min: -2,
-        max: 2
+        top: '70%',
+        height: '35%',
+        offset: 0,
+        lineWidth: 2
     }],
     series: [{
         name: 'Process',
@@ -77,6 +89,7 @@ Highcharts.stockChart('graph', {
     },{
         name: 'Actions',
         data: [],
+        step: 'left',
         yAxis: 1
     }]
 });

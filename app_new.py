@@ -11,8 +11,6 @@ import eventlet
 eventlet.monkey_patch()
 
 from threading import Lock
-thread = None
-thread_lock = Lock()
 
 # store a list of clients
 clients = {}
@@ -45,7 +43,7 @@ def updateTf(data):
     emit('process', 'Updated TF')
     clients[sid]['data']['reset'] = False
 
-    thread = socketio.start_background_task(background_thread, request.sid, sys)
+    clients[sid]['data']['thread'] = socketio.start_background_task(background_thread, request.sid, sys)
     emit('process', 'Starting simulator...')
 
 @socketio.on('connect', namespace='/')
@@ -102,7 +100,7 @@ def background_thread(sid, sys):
     while True and (counter <= MAX_STEP_LIMIT):
         if (clients[sid]['data']['reset'] == False):
             clients[sid]['data']['process'].step(clients[sid]['data']['action'], clients[sid]['data']['sys'])
-            socketio.sleep(0.25)
+            socketio.sleep(0.5)
             counter += 1
         else:
             clients[sid]['data']['process'].reset_system(clients[sid]['data']['sys'])
